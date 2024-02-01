@@ -1,0 +1,53 @@
+The DDA (Digital Differential Analyzer) algorithm is a simple and efficient method for drawing straight lines in a raster display. It works by calculating the incremental values of x and y at each step and using them to determine the next pixel to be plotted.
+
+The basic idea behind the DDA algorithm is to start with the coordinates of the starting point (x1, y1) and calculate the slope of the line (m) as:
+
+ 
+=
+(
+ 
+2
+−
+ 
+1
+)
+(
+ 
+2
+−
+ 
+1
+)
+m= 
+(x2−x1)
+(y2−y1)
+​
+ 
+
+Then, based on the decision parameter, the next pixel to be plotted is determined. The algorithm calculates incremental values for x and y and increments them by the slope at each step.
+
+Here is a simple pseudocode for the DDA line algorithm:
+
+plaintext
+Copy code
+function drawLineDDA(x1, y1, x2, y2)
+    dx = x2 - x1
+    dy = y2 - y1
+    steps = max(abs(dx), abs(dy))
+    xIncrement = dx / steps
+    yIncrement = dy / steps
+
+    x = x1
+    y = y1
+
+    plot(x, y)
+
+    for i = 1 to steps
+        x = x + xIncrement
+        y = y + yIncrement
+        plot(round(x), round(y))
+    end for
+end function
+In this pseudocode, plot(x, y) represents the function to plot a pixel at the coordinates (x, y). The round() function is used to round off the coordinates to the nearest integer, as the pixel coordinates are discrete values in a raster display.
+
+It's important to note that the DDA algorithm is susceptible to rounding errors, and in some cases, the endpoints of the line may not exactly meet the desired endpoint coordinates. Other algorithms like Bresenham's line algorithm are often preferred for their accuracy in drawing lines on a raster grid.
